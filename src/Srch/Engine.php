@@ -6,41 +6,11 @@ use Srch\String\Slug;
 
 class Engine
 {
-	public function addNode($root, $itemId, $char)
+	protected $tree;
+
+	public function __construct($tree)
 	{
-		if ($root->hasNode($char)) {
-			$node = $root->getNode($char);
-		} else {
-			$node = new Node($char);
-			$root->addChild($node);
-		}
-
-		$node->addItemId($itemId);
-
-		return $node;
-	}
-
-	public function buildGraph($items)
-	{
-		$root = new Node();
-
-		//foreach item (id + text)
-		foreach ($items as $key => $item) {
-			//use the slug to normalize the text
-			//we dont need accentuation or special chars
-			$terms = explode('-', Slug::generate($item['text']));
-
-			foreach ($terms as $term) {
-				$length = strlen($term);
-				$base = $root;
-
-				for ($i=0; $i < $length; $i++) {
-					$base = $this->addNode($base, $item['id'], $term[$i]);
-				}
-			}
-		}
-
-		return $root;
+		$this->tree = $tree;
 	}
 
 	public function search($node, $term, $allowedJumps = 0)

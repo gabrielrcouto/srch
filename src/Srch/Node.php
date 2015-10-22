@@ -6,6 +6,7 @@ class Node
 	protected $char;
 	protected $children;
 	protected $ids;
+	protected $fields;
 
 	public function __construct($char = '')
 	{
@@ -15,11 +16,19 @@ class Node
 
 		$this->children = [];
 		$this->ids = [];
+		$this->fields = [];
 	}
 
 	public function addChild($node)
 	{
 		$this->children[] = $node;
+	}
+
+	public function addField($field)
+	{
+		if (! $this->hasField($field)) {
+			$this->fields[] = $field;
+		}
 	}
 
 	public function addItemId($itemId)
@@ -53,6 +62,16 @@ class Node
 	public function isChar($char)
 	{
 		return $this->char == $char;
+	}
+
+	public function hasChildren()
+	{
+		return count($this->children) > 0;
+	}
+
+	public function hasField($field)
+	{
+		return in_array($field, $this->fields);
 	}
 
 	public function hasNode($char)
