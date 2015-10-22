@@ -1,0 +1,22 @@
+{
+    "name": "gabrielrcouto/srch",
+    "type": "library",
+    "description": "Graph Based Search Engine",
+    "keywords": [],
+    "homepage": "http://r3c.com.br",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gabriel Rodrigues Couto",
+            "email": "gabriel@r3c.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "jbroadway/urlify": "^1.0@dev"
+    },
+    "autoload": {
+        "psr-4": { "Srch\\": "src/Srch/" }
+    },
+    "minimum-stability": "dev"
+}
